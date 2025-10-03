@@ -21,7 +21,10 @@ class transfer extends Simulation{
     )
   // 3 Load Scenario
     setUp(
-    scn.inject(rampUsersPerSec(5).to(15).during(30))
+    scn.inject(
+      rampUsersPerSec(50).to(150).during(30.seconds),   // Aumenta progresivamente la carga
+      constantUsersPerSec(150).during(60.seconds)       // Mantiene 150 TPS durante 1 minuto
+    )
   ).protocols(httpConf);
 
 }
